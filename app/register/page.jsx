@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);

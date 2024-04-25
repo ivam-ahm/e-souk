@@ -1,5 +1,8 @@
+import { cookies } from "next/headers.js";
 import db from "../config/db.js";
 import bcrypt from "bcrypt";
+import { SignJWT, jwtVerify } from "jose";
+import { encrypt } from "./functions.js";
 
 export async function POST(request) {
   const body = await request.json();
@@ -17,14 +20,15 @@ export async function POST(request) {
             if (result.length == 0) {
               reject("wrong email");
             } else {
-              console.log(result[0].password, password);
               bcrypt.compare(password, result[0].password, (err, res) => {
                 if (err) {
                   reject(err);
                 } else if (!res) {
                   reject("wrong password");
                 } else {
-                  resolve("logged in successfully");
+                  resolve({
+                    message: "logged in successfully",
+                  });
                 }
               });
             }
@@ -32,8 +36,17 @@ export async function POST(request) {
         }
       );
     });
+    const user = { email: email };
+    const expires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7);
+    const session = await encrypt({ user, expires });
+    cookies().set("session", session, {
+      expires,
+      httpOnly: true,
+    });
+    const notready = await promise;
+    const message = notready.message;
 
-    return new Response(JSON.stringify({ message: "logged in successfully" }), {
+    return new Response(JSON.stringify({ message: message }), {
       headers: {
         "content-type": "application/json; charset=UTF-8",
       },

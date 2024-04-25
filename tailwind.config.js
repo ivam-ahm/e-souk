@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        main: "#fed700",
+        main: "#fc8000",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
@@ -22,4 +22,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}; //#fed700

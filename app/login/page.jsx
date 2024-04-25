@@ -1,10 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/EsoukLogo.png";
-import GoogleLogo from "../../assets/GoogleLogo.png";
-import FacebookLogo from "../../assets/FacebookLogo.png";
-import leftImage from "../../assets/leftimage.jpg";
-import Path from "@/components/Path";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -12,6 +7,8 @@ import Link from "next/link";
 const page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loaded, setloaded] = useState(false);
+  const [loggedIn, setLoggedIn] = useState("");
+  const [error, setError] = useState("");
   const [creds, setCreds] = useState({
     email: "",
     password: "",
@@ -26,15 +23,26 @@ const page = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      body: JSON.stringify(creds),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      console.log(data.message);
+    if (!creds.email.includes("@")) {
+      setError("Invalid email");
+    } else if (creds.password.length < 8) {
+      setError("Password must be atleast 8 characters");
     } else {
-      console.log(data.message);
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        body: JSON.stringify(creds),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setError("");
+        setLoggedIn(data.message);
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 1000);
+      } else {
+        setLoggedIn("");
+        setError(data.message);
+      }
     }
   };
   const togglePassword = () => {
@@ -88,6 +96,16 @@ const page = () => {
             />
             <label htmlFor="checkbox">Remember me</label>
           </div>
+          {loggedIn && (
+            <div>
+              <p className="text-green-500">{loggedIn}</p>
+            </div>
+          )}
+          {error && (
+            <div>
+              <p className="text-red-500">{error}</p>
+            </div>
+          )}
           <button
             className="self-start bg-main py-2 px-6 rounded-3xl text-xl text-white tracking-wider"
             onClick={handleSubmit}
@@ -107,67 +125,3 @@ const page = () => {
 };
 
 export default page;
-
-// left part div
-// <div className="w-[50vw] h-screen bg-[#f5f5f6]">
-//   {/* img div */}
-//   <div>
-//     <img
-//       src={logo.src}
-//       alt="Website Logo"
-//       className="w-[200px] flex mx-auto pt-11 "
-//     />
-//   </div>
-//   {/* form div */}
-//   <div className="mb-8 flex justify-center">
-//     <form action="" className="items-center justify-center  ">
-//       <h1 className="text-3xl font-bold mb-12">Sign In</h1>
-//       <div>
-//         <input
-//           placeholder="Your email"
-//           type="Email"
-//           className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-//         />
-//       </div>
-//       <div>
-//         <input
-//           placeholder="Password"
-//           type="password"
-//           className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-//         />
-//       </div>
-
-//       <button className="flex text-white bg-[#fb904b] text-[20px] justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2">
-//         Log in
-//       </button>
-//       <h3 className="cursor-pointer flex justify-center mx-auto font-bold text-[#fb904b]">
-//         Forgot password ?
-//       </h3>
-//     </form>
-//   </div>
-//   {/* below Form Div */}
-
-//   <div className="flex justify-center items-center">
-//     <button className="flex justify-center items-center text-black border-2 px-9 py-3 my-2 mx-2 rounded-xl ">
-//       <img src={GoogleLogo.src} alt="" className="w-[31px] mr-2" />
-//       Google
-//     </button>
-//     <button className="flex justify-center items-center text-black border-2 px-5 py-3 my-2 mx-2 rounded-xl ">
-//       <img src={FacebookLogo.src} alt="" className="w-11 mr-2" />
-//       Facebook
-//     </button>
-//   </div>
-//   <footer className="flex justify-center items-center mt-10">
-//     <p>
-//       Don’t have an account?
-//       <span> </span>
-//       <a href="/register" className="text-[#fb904b]">
-//         Register
-//       </a>
-//     </p>
-//   </footer>
-// </div>
-// {/* Right part div */}
-// <div className="w-full h-screen bg-[#f5f5f7] flex ">
-//   <img src={leftImage.src} alt="" className="w-full" />
-// </div>
