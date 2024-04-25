@@ -1,149 +1,157 @@
 "use client";
-import React, { useState } from "react";
-import logo from "../../assets/EsoukLogo.png";
-import GoogleLogo from "../../assets/GoogleLogo.png";
-import FacebookLogo from "../../assets/FacebookLogo.png";
-import leftImage from "../../assets/leftimage.jpg";
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
 const SignUpPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [loaded, setloaded] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState({
+    userName: "",
+    password: "",
+    email: "",
+  });
   const [creds, setCreds] = useState({
-    firstName: "",
-    lastName: "",
+    userName: "",
     email: "",
     password: "",
     repeatPassword: "",
   });
+
   const handleChange = (e) => {
-    e.preventDefault();
     setCreds((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const [showPassword, setShowPassword] = useState(false);
-  function handleShowPassword() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (creds.userName.length < 3) {
+      setError((prev) => ({
+        ...prev,
+        userName: "Username must be atleast 3 characters",
+      }));
+    } else if (!creds.email.includes("@")) {
+      setError((prev) => ({ ...prev, userName: "", email: "Invalid email" }));
+    } else if (creds.password.length < 8) {
+      setError((prev) => ({
+        ...prev,
+        userName: "",
+        email: "",
+        password: "Password must be atleast 6 characters",
+      }));
+    } else if (creds.password !== creds.repeatPassword) {
+      setError((prev) => ({ ...prev, password: "Passwords do not match" }));
+    } else {
+      setError({ userName: "", email: "", password: "" });
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        body: JSON.stringify(creds),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setSuccess(data.message);
+        setTimeout(() => {
+          console.log("redirecting");
+          window.location.href = "/home";
+        }, 1000);
+      } else {
+        setError((prev) => ({ prev, password: data.message }));
+      }
+    }
+  };
+  const togglePassword = () => {
     setShowPassword((prevPassword) => !prevPassword);
-  }
-  // let passwordMatch;
-  // function checkPassword(e) {
-  //   if (e.target.password != e.target.repeatPassword) {
-  //     return !passwordMatch;
-  //   }
-  // }
+  };
+  useEffect(() => {
+    setloaded(true);
+  }, []);
 
   return (
-    // container
-    <div className="flex">
-      {/* left part div */}
-      <div className="w-[50vw] h-screen bg-[#f5f5f6] flex flex-col gap-6">
-        {/* img div */}
-        <div>
-          <img
-            src={logo.src}
-            alt="Website Logo"
-            className="w-[200px] flex mx-auto pt-11 "
-          />
-        </div>
-        {/* form div */}
-        <h1 className="text-3xl font-bold px-[125px]">Register</h1>
-        <form
-          action=""
-          className="flex flex-col gap-8 items-center justify-center "
-        >
-          <div className="">
-            <div>
-              <input
-                placeholder="First name"
-                name="firstName"
-                type="text"
-                className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-                value={creds.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Second name"
-                name="lastName"
-                type="text"
-                className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-                value={creds.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Your email"
-                name="email"
-                type="Email"
-                className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-                value={creds.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Password"
-                name="password"
-                type={showPassword ? "password" : "text"}
-                className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-                value={creds.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Repeat Password"
-                name="repeatPassword"
-                type={showPassword ? "password" : "text"}
-                className="flex text-black justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2"
-                value={creds.repeatPassword}
-                onChange={handleChange}
-              />
-            </div>
-            {/* {passwordMatch && (
-              <dir>
-                <p>The passwords does not match ,Try again !</p>
-              </dir>
-            )} */}
+    <div>
+      <div className="h-screen w-full flex justify-center items-center font-poppins">
+        <div className="flex flex-col gap-10 w-[450px]">
+          <div className="py-2 border-b-2 border-main text-4xl">Register</div>
+          <div className="text-gray-600 text-lg">
+            Create new account today to reap the benefits of a personalized
+            shopping experience.
           </div>
+          <form className="flex flex-col gap-5 relative">
+            <input
+              name="userName"
+              onChange={handleChange}
+              value={creds.userName}
+              type="text"
+              placeholder="User name"
+              className="border border-gray-600 px-5 py-[10px] rounded-3xl text-xl focus:outline-main focus:outline-1 "
+            />
+            {error.userName && (
+              <div>
+                <p className="text-red-500">{error.userName}</p>
+              </div>
+            )}
+            <input
+              name="email"
+              onChange={handleChange}
+              value={creds.email}
+              type="email"
+              placeholder="Email"
+              className="border border-gray-600 px-5 py-[10px] rounded-3xl text-xl focus:outline-main focus:outline-1 "
+            />
+            {error.email && (
+              <div>
+                <p className="text-red-500">{error.email}</p>
+              </div>
+            )}
+            <input
+              name="password"
+              onChange={handleChange}
+              value={creds.password}
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="border border-gray-600 px-5 py-[10px] rounded-3xl text-xl focus:outline-main focus:outline-1"
+            />
+            <input
+              name="repeatPassword"
+              onChange={handleChange}
+              value={creds.repeatPassword}
+              type={showPassword ? "text" : "password"}
+              placeholder="Repeat Password"
+              className="border border-gray-600 px-5 py-[10px] rounded-3xl text-xl focus:outline-main focus:outline-1"
+            />
+            {loaded && (
+              <FontAwesomeIcon
+                icon={showPassword ? faEyeSlash : faEye}
+                size="md"
+                className="absolute bottom-[86px] right-5"
+                onClick={togglePassword}
+              />
+            )}
+          </form>
+          {error.password && (
+            <div>
+              <p className="text-red-500">{error.password}</p>
+            </div>
+          )}
+          {success && (
+            <div>
+              <p className="text-green-500 text-xl">{success}</p>
+            </div>
+          )}
 
-          <button className="flex text-white bg-[#fb904b] text-[20px] justify-center items-center mx-auto w-[402px] h-[50px] border-2 rounded-lg px-6 py-3 my-2">
+          <button
+            className="self-start bg-main py-2 px-6 rounded-3xl text-xl text-white"
+            onClick={handleSubmit}
+          >
             Register
           </button>
-        </form>
-        <div className="flex justify-center items-center">
-          <button
-            className="flex justify-center items-center text-black border-2 px-9 py-3 my-2 mx-2 rounded-xl "
-            onClick={handleShowPassword}
-          >
-            <img src={GoogleLogo.src} alt="" className="w-[31px] mr-2" />
-            Google
-          </button>
-          <button className="flex justify-center items-center text-black border-2 px-5 py-3 my-2 mx-2 rounded-xl ">
-            <img src={FacebookLogo.src} alt="" className="w-11 mr-2" />
-            Facebook
-          </button>
+          <div>
+            Already have an account?{" "}
+            <Link href="/login" className="text-main">
+              Login
+            </Link>
+          </div>
         </div>
-        <a
-          href="/signin"
-          className="cursor-pointer flex justify-center mx-auto font-bold text-[#fb904b]"
-        >
-          Already have an account?
-        </a>
-      </div>
-
-      {/* below Form Div */}
-
-      {/* <footer className="flex justify-center items-center mt-10">
-          <p>
-            Don’t have an account?
-            <span> </span>
-            <a href="/" className="text-[#fb904b]">
-              Sign Up
-            </a>
-          </p>
-        </footer> */}
-
-      {/* Right part div */}
-      <div className="w-full h-screen bg-[#f5f5f7] flex ">
-        <img src={leftImage.src} alt="" className="w-full" />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import Path from "@/components/Path";
 import "./globals.css";
 
 export const metadata = {
