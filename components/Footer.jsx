@@ -36,7 +36,7 @@ const Footer = () => {
               />
               <button
                 type="sign up"
-                className=" bg-orange-300 rounded-2xl border-2 border-l-0 rounded-l-none border-black px-6 pb-[6px] pt-2  h-10 text-black font-bold"
+                className=" bg-orange-300 rounded-2xl border-2 border-l-0 rounded-l-none border-black px-6 pb-[6px] pt-2  h-10 text-black font-bold "
               >
                 Sign Up
               </button>
