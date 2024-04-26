@@ -2,11 +2,8 @@
 import { React } from "react";
 import { useState } from "react";
 import EsoukLogo from "../assets/EsoukLogo.png";
-import { FaBars, FaTimes } from "react-icons/fa";
 import MagnifyingGlass from "../assets/MagnifyingGlass.png";
 import { GoChevronDown } from "react-icons/go";
-import { BiRepost } from "react-icons/bi";
-import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { VscAccount } from "react-icons/vsc";
 const Header = () => {
@@ -18,7 +15,6 @@ const Header = () => {
     e.preventDefault();
     setSearch((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(search);
 
   const [cat, setCat] = useState(false);
   function handleClickCat() {
@@ -162,7 +158,7 @@ const Header = () => {
             </a>
           </div>
           <div className="text-3xl flex p-4 text-[#29323a] justify-center items-center ">
-            <a href="/home/account/cart">
+            <a href="/home/cart">
               <IoCartOutline className=" cursor-pointer" />
             </a>
             <p className="text-[14px]">0 $</p>

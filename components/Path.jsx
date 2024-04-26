@@ -6,10 +6,20 @@ import React from "react";
 
 const Path = () => {
   const path = usePathname();
+
   const pages = path.split("/");
+  if (pages[pages.length - 1] === "home") {
+    return <div></div>;
+  }
   const PATH = pages.map((page, index) => {
+    if (page === "") {
+      return "";
+    }
+    if (page === "account") {
+      return "";
+    }
     return (
-      <div key={index} className="flex gap-3 items-center ">
+      <div key={index} className="flex gap-3 items-center">
         {index > 1 ? (
           <FontAwesomeIcon
             icon={faGreaterThan}
