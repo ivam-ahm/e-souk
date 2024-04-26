@@ -8,6 +8,7 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loaded, setloaded] = useState(false);
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     userName: "",
     password: "",
@@ -18,6 +19,7 @@ const SignUpPage = () => {
     email: "",
     password: "",
     repeatPassword: "",
+    userType: "simple_user",
   });
 
   const handleChange = (e) => {
@@ -25,6 +27,7 @@ const SignUpPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (creds.userName.length < 3) {
       setError((prev) => ({
         ...prev,
@@ -58,6 +61,7 @@ const SignUpPage = () => {
         setError((prev) => ({ prev, password: data.message }));
       }
     }
+    setLoading(false);
   };
   const togglePassword = () => {
     setShowPassword((prevPassword) => !prevPassword);
@@ -137,10 +141,27 @@ const SignUpPage = () => {
               <p className="text-green-500 text-xl">{success}</p>
             </div>
           )}
-
+          <div className="flex gap-3 pl-1 items-center">
+            <select
+              name="userType"
+              className="border active:border-main border-main  outline-none focus:border-main  rounded-xl px-2 py-1"
+              value={creds.userType}
+              onChange={handleChange}
+            >
+              <option selected value="simple_user">
+                Simple
+              </option>
+              <option value="affiliate">Affiliate</option>
+              <option value="admin">Admin</option>
+            </select>
+            <label htmlFor="select">choose your account type</label>
+          </div>
           <button
-            className="self-start bg-main py-2 px-6 rounded-3xl text-xl text-white"
+            className={`self-start bg-main py-2 px-6 rounded-3xl text-xl text-white ${
+              loading ? "bg-gray-500" : ""
+            }`}
             onClick={handleSubmit}
+            disabled={loading}
           >
             Register
           </button>

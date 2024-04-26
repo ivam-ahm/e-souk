@@ -6,9 +6,11 @@ import { cookies } from "next/headers.js";
 
 export async function POST(request) {
   const body = await request.json();
+  let user_type = body.userType;
   const user_id = nanoid();
   const user_name = body.userName;
   const email = body.email;
+
   const salt = await bcrypt.genSalt(10);
 
   const password = await bcrypt.hash(body.password, salt);
@@ -17,7 +19,7 @@ export async function POST(request) {
   try {
     const promise = await new Promise((resolve, reject) => {
       db.query(
-        `SELECT * FROM user WHERE email = '${email}' OR user_name = '${user_name}' `,
+        `SELECT * FROM ${user_type} WHERE (email = '${email}' OR user_name = '${user_name}')`,
         (err, result) => {
           if (err) {
             reject(err);
@@ -26,7 +28,9 @@ export async function POST(request) {
               reject({ message: "creds already used by an account" });
             } else {
               db.query(
-                `INSERT INTO user (user_id, user_name, email, password, creation_date) VALUES ('${user_id}', '${user_name}', '${email}', '${password}', '${creation_date}')`,
+                `INSERT INTO ${user_type} (${
+                  user_type == "affiliate" ? "affiliate_id" : "user_id"
+                }, user_name, email, password, creation_date) VALUES ('${user_id}', '${user_name}', '${email}', '${password}', '${creation_date}')`,
                 (err, result) => {
                   if (err) {
                     reject(err);
@@ -42,7 +46,7 @@ export async function POST(request) {
         }
       );
     });
-    const user = { email: email };
+    const user = { email: email, user_type: user_type };
     const expires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7);
     const session = await encrypt({ user, expires });
     const message = await promise.message;

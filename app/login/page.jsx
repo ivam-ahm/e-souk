@@ -9,10 +9,12 @@ const page = () => {
   const [loaded, setloaded] = useState(false);
   const [loggedIn, setLoggedIn] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [creds, setCreds] = useState({
     email: "",
     password: "",
     rememberMe: false,
+    userType: "simple_user",
   });
   const handleChange = (e) => {
     if (e.target.name === "rememberMe") {
@@ -23,6 +25,8 @@ const page = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
     if (!creds.email.includes("@")) {
       setError("Invalid email");
     } else if (creds.password.length < 8) {
@@ -44,6 +48,7 @@ const page = () => {
         setError(data.message);
       }
     }
+    setLoading(false);
   };
   const togglePassword = () => {
     setShowPassword((prevPassword) => !prevPassword);
@@ -86,15 +91,30 @@ const page = () => {
               />
             )}
           </form>
-          <div className="flex gap-3 pl-1">
-            <input
-              type="checkbox"
-              className="accent-main "
-              name="rememberMe"
+          <div>
+            <select
+              name="userType"
+              className="border active:border-main border-main  outline-none focus:border-main  rounded-xl px-2 py-1 mb-4"
+              value={creds.userType}
               onChange={handleChange}
-              checked={creds.rememberMe}
-            />
-            <label htmlFor="checkbox">Remember me</label>
+            >
+              <option selected value="simple_user">
+                Simple
+              </option>
+              <option value="affiliate">Affiliate</option>
+              <option value="admin">Admin</option>
+            </select>
+
+            <div className="flex gap-3 pl-1">
+              <input
+                type="checkbox"
+                className="accent-main w-fit "
+                name="rememberMe"
+                onChange={handleChange}
+                checked={creds.rememberMe}
+              />
+              <label htmlFor="checkbox">Remember me</label>
+            </div>
           </div>
           {loggedIn && (
             <div>
@@ -107,8 +127,11 @@ const page = () => {
             </div>
           )}
           <button
-            className="self-start bg-main py-2 px-6 rounded-3xl text-xl text-white tracking-wider"
+            className={`self-start bg-main py-2 px-6 rounded-3xl text-xl text-white tracking-wider ${
+              loading ? "bg-gray-500" : ""
+            }`}
             onClick={handleSubmit}
+            disabled={loading}
           >
             Login
           </button>

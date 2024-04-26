@@ -9,13 +9,13 @@ export const encrypt = async (session) => {
     .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 };
 export const decrypt = async (session) => {
-  const { payload } = await jwtVerify(session, key, {
+  const { payload } = await jwtVerify(session, process.env.JWT_SECRET, {
     algorithms: ["HS256"],
   });
   return payload;
 };
 
-const updateSession = async (request) => {
+export const updateSession = async (request) => {
   const session = request.cookies.get("session")?.value;
   if (!session) return;
   const parsed = await decrypt(session);
