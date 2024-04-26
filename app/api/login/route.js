@@ -9,11 +9,9 @@ export async function POST(request) {
   const email = body.email;
   const password = body.password;
   let user_type = body.userType;
-  console.log("before: ", user_type);
 
   try {
     const promise = await new Promise((resolve, reject) => {
-      console.log(email, user_type);
       db.query(
         `SELECT * FROM ${user_type} WHERE email = '${email}' `,
         (err, result) => {
