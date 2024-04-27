@@ -1,4 +1,4 @@
-import { affiliateHeroBg, affiliateLogo } from "@/app/affiliate/assets";
+import { affiliateHeroBg, affiliateLogo } from "@/assets";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";

@@ -1,5 +1,5 @@
 import React from "react";
-import { bitmap } from "../assets";
+import { bitmap } from "../../assets";
 
 const ChooseUs = () => {
   return (

@@ -13,14 +13,13 @@ const Header = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setSearch((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setSearch((prev) => e.target.value);
   };
 
   const [cat, setCat] = useState(false);
   function handleClickCat() {
     setCat((prevCat) => !prevCat);
   }
-
   const [Tvcat, setTvCat] = useState(false);
   function handleClickCatTv() {
     setTvCat((prevCat) => !prevCat);
@@ -98,7 +97,7 @@ const Header = () => {
         <div className="flex justify-center items-center ml-10 ">
           <input
             name="searchh"
-            value={search.search}
+            value={search}
             onChange={handleChange}
             type="text"
             placeholder="Search"

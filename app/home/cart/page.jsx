@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import item1 from "../assets/cart/iphone13.png";
-import item2 from "../assets/cart/tv.png";
-import item3 from "../assets/cart/headsetbeats.png";
-import plusIcon from "../assets/cart/minus.png";
-import minusIcon from "../assets/cart/Plus.png";
-import dele from "../assets/cart/tbin.png";
+import item1 from "@assets/cart/iphone13.png";
+import item2 from "@assets/cart/tv.png";
+import item3 from "@assets/cart/headsetbeats.png";
+import plusIcon from "@assets/cart/minus.png";
+import minusIcon from "@assets/cart/Plus.png";
+import dele from "@assets/cart/tbin.png";
 import "./cart.css";
 
 // Base prices for the items

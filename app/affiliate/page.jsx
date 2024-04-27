@@ -1,6 +1,6 @@
-import { affiliateLogo } from "./assets";
-import ChooseUs from "./components/ChooseUs";
-import Hero from "./components/Hero";
+import { affiliateLogo } from "@/assets";
+import ChooseUs from "@/components/affiliate/ChooseUs";
+import Hero from "@/components/affiliate/Hero.jsx";
 
 const page = () => {
   return (
