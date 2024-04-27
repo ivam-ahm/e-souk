@@ -7,9 +7,11 @@ const page = () => {
     <div>
       <nav className="py-7  justify-between absolute top-0 left-0 w-full px-[250px] flex">
         <img src={affiliateLogo.src} alt="logo" />
-        <button className="bg-main px-4 py-2 rounded-2xl  text-lg font-semibold">
-          Join the project
-        </button>
+        <a href="/register">
+          <button className="bg-main px-4 py-2 rounded-2xl  text-lg font-semibold">
+            Join the project
+          </button>
+        </a>
       </nav>
       <Hero />
       <div className="h-[20vh] px-[250px] flex items-center justify-between">

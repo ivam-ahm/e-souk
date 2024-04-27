@@ -13,7 +13,6 @@ const Footer = () => {
     e.preventDefault();
     setEmail((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(email);
   return (
     <footer className="bg-white text-center text-black w-full   border-2">
       <div className="flex w-full bg-[#fe8000]  justify-center items-center ">

@@ -1,0 +1,365 @@
+.profile-form {
+  padding: 24px; /* Padding for the whole form */
+}
+.ff {
+  position: relative;
+  left: 600px;
+  width: 1000px;
+}
+.input-wrapper10 {
+  padding-top: 30px;
+  left: 0px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 16px; /* Space between sections */
+  position: relative;
+}
+.input-wrapper20 {
+  padding-top: 30px;
+  left: 0px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 16px; /* Space between sections */
+  position: relative;
+}
+
+.first-name-input,
+.last-name-input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 400px;
+}
+
+.label {
+  font-style: italic;
+  font-weight: 600; /* Bold font for labels */
+  margin-bottom: 10px; /* Space between label and input */
+  margin-top: 25px;
+}
+.h1 {
+  position: relative;
+
+  width: 1000px;
+}
+.profile h1 {
+  left: 600px;
+  font-size: 35px;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 05px;
+  color: #414040;
+  position: relative;
+  width: 1000px;
+}
+.displayname input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+  font-style: italic;
+}
+.displayname {
+  padding-top: 20px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 16px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+.emailaddress input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.emailaddress {
+  padding-top: 30px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 35spx; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+.sec2 {
+  position: relative;
+  left: 0px;
+  width: 1000px;
+  padding-top: 60px;
+  padding-bottom: 10px;
+}
+.sec2 h1 {
+  padding-left: 600px;
+  font-size: 35px;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #414040;
+  position: relative;
+  width: 1000px;
+}
+
+.currentpassword input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.currentpassword {
+  padding-top: 20px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 25px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+
+.newpassword input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.newpassword {
+  padding-top: 20px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 25px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+
+.confirmpassword input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.confirmpassword {
+  padding-top: 30px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 50px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+
+.savee {
+  padding-top: 10px;
+  padding-left: 0px;
+  width: 0px;
+  height: 0px;
+  padding-bottom: 80px;
+}
+.savebtn {
+  background-color: #fc8000;
+  position: relative;
+  height: 70px;
+  width: 150px;
+  left: 600px;
+  border-radius: 30px;
+  font-weight: 550;
+}
+.orders {
+  padding-top: 40px;
+  height: 600px;
+  padding-left: 600px;
+}
+.orders h1 {
+  left: 0px;
+  font-size: 45px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 40px;
+  color: #414040;
+  position: relative;
+  width: 1000px;
+}
+.details {
+  padding-bottom: 50px;
+}
+.ordertext {
+  border-bottom: 0px solid #bdbcbb;
+  padding-left: 10px;
+  padding-bottom: 15px;
+}
+.orderlabels {
+  padding-top: 05px;
+  padding-bottom: 05px;
+  border-bottom: 1px solid #bdbcbb;
+  border-top: 1px solid #bdbcbb;
+}
+.itemlabels {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #bdbcbb;
+  color: #6b6b6b;
+  font-style: italic;
+}
+.btn-action {
+  background-color: #e7e7e0;
+  border-radius: 20px;
+  height: 40px;
+  width: 120px;
+}
+.payment-inputs input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.payment-inputs {
+  padding-top: 40px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 50px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+.save-btn2 {
+  background-color: #fc8000;
+  position: relative;
+  height: 70px;
+  width: 150px;
+  left: 600px;
+  border-radius: 30px;
+  font-weight: 550;
+}
+.input-wrapper1 input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.input-wrapper1 {
+  padding-top: 40px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 50px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+.input-wrapper2 input {
+  border: 1px solid #ccc; /* Border around the input */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px; /* Padding inside the input */
+  width: 550px;
+}
+.input-wrapper2 {
+  padding-top: 40px;
+  left: 600px;
+  display: flex;
+  flex-direction: column; /* Labels on top of inputs */
+  margin-bottom: 25px; /* Space between sections */
+  position: relative;
+  width: 1000px;
+}
+.totals {
+  padding: 20px;
+  position: relative;
+  top: -4050px;
+  width: 405px;
+  height: 340px;
+  border-radius: 25px;
+  border-width: 2px;
+  border-color: #b9bbb8;
+}
+
+.totals .accountdetails {
+  color: #616361;
+  font-weight: 350;
+  font-size: 19px;
+  border-bottom: 2px solid #a8a6a4;
+  height: 20px;
+
+  padding-bottom: 50px;
+  width: 350px;
+}
+.totals .passwordchanging {
+  color: #616361;
+  font-weight: 350;
+  font-size: 19px;
+  border-bottom: 2px solid #a8a6a4;
+  height: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  width: 350px;
+}
+.totals .order {
+  color: #616361;
+  font-weight: 350;
+  font-size: 19px;
+  border-bottom: 2px solid #a8a6a4;
+  height: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  width: 350px;
+}
+.totals .paymentmethods {
+  color: #616361;
+  font-weight: 350;
+  font-size: 19px;
+  border-bottom: 2px solid #a8a6a4;
+  height: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  width: 350px;
+}
+.totals .address {
+  color: #616361;
+  font-weight: 350;
+  font-size: 19px;
+
+  height: 20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  width: 350px;
+}
+
+.delete-btn {
+  width: 18px;
+  height: 17px;
+  background-color: #ffffff;
+}
+.delete-btn img {
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  width: 35px;
+}
+.totals .accountdetails .delete-btn {
+  position: relative;
+  left: 180px;
+}
+.totals .address .delete-btn {
+  position: relative;
+  left: 245px;
+}
+.totals .order .delete-btn {
+  position: relative;
+  left: 250px;
+}
+.totals .passwordchanging .delete-btn {
+  position: relative;
+  left: 152px;
+}
+
+.totals .paymentmethods .delete-btn {
+  position: relative;
+  left: 160px;
+}
+.hover-underline {
+  text-decoration: none; /* No underline by default */
+}
+
+.hover-underline:hover {
+  text-decoration: underline; /* Underline on hover */
+}

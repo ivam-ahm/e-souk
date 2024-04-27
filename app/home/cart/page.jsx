@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import item1 from "@assets/cart/iphone13.png";
-import item2 from "@assets/cart/tv.png";
-import item3 from "@assets/cart/headsetbeats.png";
-import plusIcon from "@assets/cart/minus.png";
-import minusIcon from "@assets/cart/Plus.png";
-import dele from "@assets/cart/tbin.png";
+import plusIcon from "@/assets/cart/minus.png";
+import minusIcon from "@/assets/cart/Plus.png";
+import dele from "@/assets/cart/tbin.png";
 import "./cart.css";
 
 // Base prices for the items
@@ -63,27 +60,28 @@ const page = () => {
 
   const handleDelete = () => {};
 
-  const items = [
-    {
-      image: item1.src,
-      description: ["Apple iPhone 13", "Product Red - 128GB ", "Red"],
-      link: "https://example.com/item1",
-    },
-    {
-      image: item2.src,
-      description: [
-        "Smart TV LED-backlit",
-        "High-definition television",
-        "chrome",
-      ],
-      link: "https://example.com/item1",
-    },
-    {
-      image: item3.src,
-      description: ["Beats Studio Pro", "Premium Wireless Headphones", "Black"],
-      link: "https://youtube.com",
-    },
-  ];
+  const items = [];
+  // const items = [
+  //   {
+  //     image: ,
+  //     description: ["Apple iPhone 13", "Product Red - 128GB ", "Red"],
+  //     link: "https://example.com/item1",
+  //   },
+  //   {
+  //     image: ,
+  //     description: [
+  //       "Smart TV LED-backlit",
+  //       "High-definition television",
+  //       "chrome",
+  //     ],
+  //     link: "https://example.com/item1",
+  //   },
+  //   {
+  //     image: ,
+  //     description: ["Beats Studio Pro", "Premium Wireless Headphones", "Black"],
+  //     link: "https://youtube.com",
+  //   },
+  // ];
 
   return (
     <div className="shopping-cart">
