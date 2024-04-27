@@ -6,7 +6,7 @@ export default function homeLayout({ children }) {
   return (
     <div>
       <Header />
-      <Path />
+      {/* <Path /> */}
       {children}
       <Footer />
     </div>

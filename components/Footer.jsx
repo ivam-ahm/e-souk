@@ -13,7 +13,6 @@ const Footer = () => {
     e.preventDefault();
     setEmail((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(email);
   return (
     <footer className="bg-white text-center text-black w-full   border-2">
       <div className="flex w-full bg-[#fe8000]  justify-center items-center ">
@@ -25,18 +24,17 @@ const Footer = () => {
                 <strong className="text-2xl">Sign up for our newsletter</strong>
               </p>
             </div>
-
             <div className="my-4 flex justify-center items-center   ">
               <input
                 onChange={handleChange}
                 type="text"
                 name="Email"
                 placeholder="Enter your e-mail address "
-                className=" rounded-2xl border-2 border-r-0 rounded-r-none text-xl border-black px-6 pb-[6px] pt-2  font-medium text-black w-[400px] h-10 "
+                className=" rounded-2xl border-2 border-r-0 rounded-r-none border-black accent-black px-6 py-2  font-medium text-black w-[400px] "
               />
               <button
                 type="sign up"
-                className=" bg-orange-300 rounded-2xl border-2 border-l-0 rounded-l-none border-black px-6 pb-[6px] pt-2  h-10 text-black font-bold "
+                className=" bg-orange-300 rounded-2xl border-2 border-l-0 rounded-l-none border-black accent-black py-2 px-6 text-black font-bold"
               >
                 Sign Up
               </button>
